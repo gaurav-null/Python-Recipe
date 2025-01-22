@@ -138,25 +138,26 @@
         }
 
         .category-card {
-            position: relative;
-            height: 300px;
-            border-radius: 15px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4); /* Darker shadow */
-            backdrop-filter: blur(15px); /* Darker glass effect */
-        }
+    position: relative;
+    height: 300px;
+    border-radius: 15px;
+    overflow: hidden; /* Ensure the image stays within the rounded corners */
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4); /* Darker shadow */
+    backdrop-filter: blur(15px); /* Darker glass effect */
+}
 
         .category-card:hover {
             transform: translateY(-10px);
         }
 
         .category-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px; /* Apply border-radius to the image to match the card's corners */
+}
 
         .category-overlay {
             position: absolute;
