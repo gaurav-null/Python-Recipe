@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Recipes</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #121212, #181818); /* Dark gradient background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #e0e0e0; /* Light text color */
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 30px;
+            background: rgba(33, 33, 33, 0.7); /* Dark semi-transparent background */
+            backdrop-filter: blur(20px); /* Glassy effect */
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Fluent-style shadow */
+        }
+
+        h1 {
+            text-align: center;
+            color: #e0e0e0;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #e0e0e0;
+            font-size: 18px;
+        }
+
+        input, select, button {
+            margin-top: 10px;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            background: #121212; /* Dark background for inputs */
+            color: #e0e0e0; /* Light text for inputs */
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            outline: none;
+        }
+
+        input:focus, select:focus, button:focus {
+            border: 2px solid #0078d4; /* Focus border color (Fluent blue) */
+        }
+
+        button {
+            background-color: #0078d4; /* Fluent blue */
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #005a99; /* Darker blue on hover */
+        }
+
+        #results {
+            margin-top: 30px;
+        }
+
+        .recipe {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #444;
+            border-radius: 8px;
+            background-color: #222; /* Slightly darker background for recipes */
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .recipe h3 {
+            font-size: 20px;
+            color: #e0e0e0;
+            margin-bottom: 10px;
+        }
+
+        .recipe p {
+            font-size: 16px;
+            color: #b0b0b0;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #444;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: #121212;
+        }
+
+        /* Increased padding between Difficulty and Search button */
+        select[name="difficulty"] {
+            margin-bottom: 20px; /* Added padding between Difficulty Level and the button */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Find Recipes</h1>
+        <form id="searchForm">
+            <label for="ingredients">Ingredients (comma-separated):</label>
+            <input type="text" id="ingredients" name="ingredients" required>
+
+            <label for="cuisine">Preferred Cuisine:</label>
+            <select id="cuisine" name="cuisine">
+                <option value="">Any</option>
+                <option value="italian">Italian</option>
+                <option value="indian">Indian</option>
+                <option value="chinese">Chinese</option>
+                <option value="mexican">Mexican</option>
+            </select>
+
+            <label for="difficulty">Difficulty Level:</label>
+            <select id="difficulty" name="difficulty">
+                <option value="">Any</option>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+
+            <button type="submit">Search Recipes</button>
+        </form>
+
+        <div id="results"></div>
+    </div>
+
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const ingredients = document.getElementById('ingredients').value;
+            const cuisine = document.getElementById('cuisine').value;
+            const difficulty = document.getElementById('difficulty').value;
+
+            const response = await fetch('/find_recipes', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ ingredients, cuisine, difficulty }),
+            });
+
+            const recipes = await response.json();
+
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+
+            if (recipes.length > 0) {
+                recipes.forEach(recipe => {
+                    const recipeDiv = document.createElement('div');
+                    recipeDiv.classList.add('recipe');
+                    recipeDiv.innerHTML = `<h3>${recipe.name}</h3><p>${recipe.description}</p>`;
+                    resultsDiv.appendChild(recipeDiv);
+                });
+            } else {
+                resultsDiv.innerHTML = '<p>No recipes found.</p>';
+            }
+        });
+    </script>
+</body>
+</html>

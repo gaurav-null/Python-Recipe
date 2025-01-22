@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Culinary Delights - World Cuisines</title>
     <style>
+        body, html {
+            overflow: hidden;
+        }
         /* General Reset */
         * {
             margin: 0;
@@ -12,42 +15,10 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-/* Example Dishes Grid */
-#cuisineExamples {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 items per row */
-    gap: 1.5rem;
-    margin-top: 2rem;
-}
-
-.example-card {
-    background-color: #1f1f1f; /* Dark background for cards */
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.example-card h3 {
-    color: #eaeaea; /* Light text color for the name */
-    margin-bottom: 1rem;
-}
-
-.example-card p {
-    color: #b0b0b0; /* Lighter text for the recipe */
-    font-size: 1rem;
-    line-height: 1.5;
-}
-
-@media (max-width: 768px) {
-    #cuisineExamples {
-        grid-template-columns: 1fr; /* Stack items on small screens */
-    }
-}
-
-        /* Dark Mode Body */
+        /* Darker Gradient Background */
         body {
-            background-color: #121212; /* Dark background */
-            color: #eaeaea; /* Light text for dark mode */
+            background: linear-gradient(135deg, #0f0f0f, #141414, #222222);
+            color: #e0e0e0; /* Slightly lighter text for better contrast */
             font-size: 16px;
             line-height: 1.6;
             display: flex;
@@ -58,26 +29,68 @@
             padding: 20px;
         }
 
-        /* Acrylic-like effect for background */
+        /* Darker Glass Effect */
+        .glass-effect {
+            background: rgba(0, 0, 0, 0.6); /* Darker background for glass effect */
+            backdrop-filter: blur(15px); /* Stronger blur for frosted effect */
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5); /* Darker shadow */
+            padding: 2rem;
+        }
+
+        /* Example Dishes Grid */
+        #cuisineExamples {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .example-card {
+            background-color: rgba(31, 31, 31, 0.8); /* Dark background for cards */
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Darker shadow */
+            backdrop-filter: blur(15px); /* Darker glass effect */
+        }
+
+        .example-card h3 {
+            color: #e0e0e0; /* Light text color for the name */
+            margin-bottom: 1rem;
+        }
+
+        .example-card p {
+            color: #b0b0b0; /* Lighter text for the recipe */
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            #cuisineExamples {
+                grid-template-columns: 1fr; /* Stack items on small screens */
+            }
+        }
+
+        /* Acrylic Background for more contrast */
         .acrylic-background {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
             z-index: -1;
             border-radius: 10px;
         }
 
-        /* Navigation bar with blur effect (no floating) */
+        /* Navigation bar with dark glass effect */
         .navbar {
-            background-color: rgba(0, 0, 0, 0.7); /* Dark background for navbar */
-            backdrop-filter: blur(8px); /* Blur effect */
+            background-color: rgba(0, 0, 0, 0.85); /* Darker background for navbar */
+            backdrop-filter: blur(12px); /* Stronger blur effect */
             padding: 1rem 2rem;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 6px 30px rgba(0,0,0,0.6);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -86,7 +99,7 @@
         }
 
         .logo {
-            color: #eaeaea; /* Light text color */
+            color: #e0e0e0; /* Lighter text color */
             font-size: 1.5rem;
             text-decoration: none;
             font-weight: bold;
@@ -98,7 +111,7 @@
         }
 
         .nav-links a {
-            color: #eaeaea;
+            color: #e0e0e0;
             text-decoration: none;
             transition: color 0.3s ease;
             font-weight: 500;
@@ -131,7 +144,8 @@
             overflow: hidden;
             cursor: pointer;
             transition: transform 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3); /* Dark shadow */
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4); /* Darker shadow */
+            backdrop-filter: blur(15px); /* Darker glass effect */
         }
 
         .category-card:hover {
@@ -149,10 +163,10 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+            background: rgba(0, 0, 0, 0.8); /* Dark overlay */
             padding: 2rem;
             color: white;
-            backdrop-filter: blur(5px); /* Fluent frosted effect */
+            backdrop-filter: blur(5px); /* Stronger frosted effect */
         }
 
         .category-title {
@@ -180,7 +194,8 @@
             color: white;
             position: relative;
             border-radius: 12px;
-            box-shadow: 0 6px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 30px rgba(0,0,0,0.5);
+            backdrop-filter: blur(15px); /* Stronger glass effect */
         }
 
         .cuisine-header::before {
@@ -190,7 +205,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.3); /* Dark overlay */
+            background: rgba(0,0,0,0.5); /* Dark overlay */
             border-radius: 12px;
             z-index: 1;
         }
@@ -227,7 +242,8 @@
             color: white;
             cursor: pointer;
             transition: background 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3); /* Dark shadow */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4); /* Dark shadow */
+            backdrop-filter: blur(5px); /* Darker glass effect */
         }
 
         .filter-button:hover {
@@ -248,8 +264,9 @@
             padding: 1rem;
             border-radius: 50%;
             text-decoration: none;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.4);
             transition: transform 0.3s ease;
+            backdrop-filter: blur(5px); /* Glass effect */
         }
 
         .back-button:hover {
@@ -274,13 +291,14 @@
     <nav class="navbar">
         <a href="index.html" class="logo">Recipie</a>
         <div class="nav-links">
+            <a href="ai.html">Ai Assist</a>
             <a href="blog.html">User content</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
 
     <!-- Cuisine Categories Page -->
-    <section class="cuisine-categories" id="categoriesPage">
+    <section class="cuisine-categories glass-effect" id="categoriesPage">
         <h1 style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem;">Explore World Cuisines</h1>
         <div class="categories-grid">
             <div class="category-card" onclick="showCuisinePage('italian')">
@@ -329,7 +347,7 @@
     </section>
 
     <!-- Cuisine Specific Page -->
-    <section class="cuisine-page" id="cuisinePage">
+    <section class="cuisine-page glass-effect" id="cuisinePage">
         <div class="cuisine-header">
             <div class="cuisine-header-content">
                 <h1 class="cuisine-title" id="cuisineTitle"></h1>
@@ -352,108 +370,66 @@
     
         <div class="recipe-grid" id="cuisineRecipes"></div>
     </section>
-    
 
     <a href="#" class="back-button" id="backButton" style="display: none;">↩</a>
 
     <script>
         // Cuisine data
         const cuisineData = {
-    italian: {
-        title: "Italian Cuisine",
-        description: "Experience the warmth and passion of Italian cooking with our collection of authentic recipes passed down through generations.",
-        background: "/api/placeholder/1920/600",
-        examples: [
-            { name: "Spaghetti Carbonara", recipe: "Classic pasta with eggs, cheese, pancetta, and pepper." },
-            { name: "Margherita Pizza", recipe: "Simple pizza with tomato, mozzarella, and fresh basil." },
-            { name: "Lasagna", recipe: "Layers of pasta, meat sauce, and creamy béchamel." },
-            { name: "Risotto alla Milanese", recipe: "Saffron-flavored creamy rice dish." },
-            { name: "Tiramisu", recipe: "Layered dessert with coffee-soaked ladyfingers and mascarpone." }
-        ]
-    },
-    asian: {
-        title: "Asian Cuisine",
-        description: "Discover the diverse flavors and cooking techniques from across Asia, from street food to imperial dishes.",
-        background: "/api/placeholder/1920/600",
-        examples: [
-            { name: "Sushi", recipe: "Vinegared rice served with various seafood, vegetables, or egg." },
-            { name: "Pad Thai", recipe: "Stir-fried rice noodles with shrimp, tofu, peanuts, and lime." },
-            { name: "Dim Sum", recipe: "A variety of small steamed or fried dishes, often served with tea." },
-            { name: "Pho", recipe: "Vietnamese noodle soup with herbs, bean sprouts, and meat." },
-            { name: "Kimchi", recipe: "Spicy and sour fermented vegetables, often cabbage or radish." }
-        ]
-    },
-    mexican: {
-        title: "Mexican Cuisine",
-        description: "Explore the vibrant and rich culinary traditions of Mexico, from tacos to tamales.",
-        background: "/api/placeholder/1920/600",
-        examples: [
-            { name: "Tacos", recipe: "Corn or flour tortillas filled with a variety of meats and toppings." },
-            { name: "Enchiladas", recipe: "Tortillas rolled and stuffed with chicken, cheese, or beef, then covered in sauce." },
-            { name: "Tamales", recipe: "Masa dough wrapped in corn husks, filled with meats or vegetables." },
-            { name: "Guacamole", recipe: "Mashed avocado with lime, cilantro, and tomatoes." },
-            { name: "Churros", recipe: "Fried dough pastry covered in sugar and cinnamon." }
-        ]
-    },
-    french: {
-        title: "French Cuisine",
-        description: "Savor the classic elegance and refinement of French gastronomy.",
-        background: "/api/placeholder/1920/600",
-        examples: [
-            { name: "Coq au Vin", recipe: "Chicken slow-cooked in red wine with mushrooms and onions." },
-            { name: "Croissant", recipe: "Buttery, flaky pastry often served at breakfast." },
-            { name: "Ratatouille", recipe: "Stewed vegetables with tomatoes, zucchini, eggplant, and herbs." },
-            { name: "Quiche Lorraine", recipe: "Savory pie with eggs, cream, cheese, and bacon." },
-            { name: "Crème Brûlée", recipe: "Rich custard topped with a crisp caramelized sugar crust." }
-        ]
-    },
-    mediterranean: {
-        title: "Mediterranean Cuisine",
-        description: "Dive into the healthy, fresh, and flavorful dishes from the Mediterranean region.",
-        background: "/api/placeholder/1920/600",
-        examples: [
-            { name: "Greek Salad", recipe: "Fresh cucumbers, tomatoes, olives, and feta cheese, dressed with olive oil." },
-            { name: "Falafel", recipe: "Deep-fried balls of chickpea or fava bean mixture, often served in pita." },
-            { name: "Hummus", recipe: "Blended chickpeas, tahini, garlic, and olive oil." },
-            { name: "Moussaka", recipe: "Layered casserole with eggplant, ground meat, and béchamel." },
-            { name: "Baklava", recipe: "Sweet pastry filled with nuts and honey syrup." }
-        ]
-    }
-};
+            italian: {
+                title: "Italian Cuisine",
+                description: "Experience the warmth and passion of Italian cooking with our collection of authentic recipes passed down through generations.",
+                background: "/api/placeholder/1920/600",
+                examples: [
+                    { name: "Spaghetti Carbonara", recipe: "Classic pasta with eggs, cheese, pancetta, and pepper." },
+                    { name: "Margherita Pizza", recipe: "Simple pizza with tomato, mozzarella, and fresh basil." },
+                    { name: "Lasagna", recipe: "Layers of pasta, meat sauce, and creamy béchamel." },
+                    { name: "Risotto alla Milanese", recipe: "Saffron-flavored creamy rice dish." },
+                    { name: "Tiramisu", recipe: "Layered dessert with coffee-soaked ladyfingers and mascarpone." }
+                ]
+            },
+            asian: {
+                title: "Asian Cuisine",
+                description: "Explore the diverse and vibrant flavors of Asia, from spicy curries to aromatic stir-fries.",
+                background: "/api/placeholder/1920/600",
+                examples: [
+                    { name: "Sushi", recipe: "Japanese dish with vinegared rice, fish, and vegetables." },
+                    { name: "Dim Sum", recipe: "Steamed dumplings filled with meat or vegetables." },
+                    { name: "Pad Thai", recipe: "Stir-fried noodles with shrimp, peanuts, and lime." },
+                    { name: "Kimchi", recipe: "Fermented cabbage with chili and garlic." },
+                    { name: "Pho", recipe: "Vietnamese noodle soup with beef and herbs." }
+                ]
+            }
+        };
 
-        // Show the cuisine page with dynamic content
         function showCuisinePage(cuisine) {
-    const cuisineInfo = cuisineData[cuisine];
-    if (!cuisineInfo) return;
+            const data = cuisineData[cuisine];
+            document.getElementById("cuisineTitle").innerText = data.title;
+            document.getElementById("cuisineDescription").innerText = data.description;
+            document.getElementById("cuisinePage").style.display = "block";
+            document.getElementById("categoriesPage").style.display = "none";
+    
+            const cuisineExamples = document.getElementById("cuisineExamples");
+            cuisineExamples.innerHTML = '';
+            data.examples.forEach((example) => {
+                const listItem = document.createElement("li");
+                listItem.className = "example-card";
+                listItem.innerHTML = `
+                    <h3>${example.name}</h3>
+                    <p>${example.recipe}</p>
+                `;
+                cuisineExamples.appendChild(listItem);
+            });
+    
+            document.getElementById("backButton").style.display = "block";
+        }
 
-    // Update the header content
-    document.querySelector("#cuisineTitle").textContent = cuisineInfo.title;
-    document.querySelector("#cuisineDescription").textContent = cuisineInfo.description;
-    document.querySelector(".cuisine-header").style.backgroundImage = `url(${cuisineInfo.background})`;
-
-    // Display the examples in a grid
-    const examplesList = document.querySelector("#cuisineExamples");
-    examplesList.innerHTML = ""; // Clear previous examples
-    cuisineInfo.examples.forEach(dish => {
-        const dishCard = document.createElement("div");
-        dishCard.classList.add("example-card");
-
-        const dishName = document.createElement("h3");
-        dishName.textContent = dish.name;
-        dishCard.appendChild(dishName);
-
-        const dishRecipe = document.createElement("p");
-        dishRecipe.textContent = dish.recipe;
-        dishCard.appendChild(dishRecipe);
-
-        examplesList.appendChild(dishCard);
-    });
-
-    // Show the cuisine page and hide the categories page
-    document.getElementById("categoriesPage").style.display = "none";
-    document.getElementById("cuisinePage").style.display = "block";
-    document.getElementById("backButton").style.display = "block";
-}   
+        // Back button functionality
+        document.getElementById("backButton").addEventListener("click", function() {
+            document.getElementById("cuisinePage").style.display = "none";
+            document.getElementById("categoriesPage").style.display = "block";
+            document.getElementById("backButton").style.display = "none";
+        });
     </script>
 </body>
 </html>
