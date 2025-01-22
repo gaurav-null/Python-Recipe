@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Culinary Delights - World Cuisines</title>
+    <style>
+        /* Previous styles remain, adding new styles for cuisine pages */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Enhanced Navigation */
+        .navbar {
+            background-color: #2c3e50;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #3498db;
+        }
+
+        /* Cuisine Categories Page */
+        .cuisine-categories {
+            margin-top: 80px;
+            padding: 2rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .category-card {
+            position: relative;
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .category-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .category-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 2rem;
+            color: white;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-desc {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Cuisine Specific Page */
+        .cuisine-page {
+            margin-top: 80px;
+            display: none;
+            padding: 2rem;
+        }
+
+        .cuisine-header {
+            text-align: center;
+            padding: 3rem 0;
+            background-size: cover;
+            background-position: center;
+            color: white;
+            position: relative;
+        }
+
+        .cuisine-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1;
+        }
+
+        .cuisine-header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cuisine-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .cuisine-description {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .recipe-filters {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-button {
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            background: #3498db;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .filter-button:hover {
+            background: #2980b9;
+        }
+
+        .filter-button.active {
+            background: #2c3e50;
+        }
+
+        /* Back Button */
+        .back-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #3498db;
+            color: white;
+            padding: 1rem;
+            border-radius: 50%;
+            text-decoration: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateY(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cuisine-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">Recipie</a>
+        <div class="nav-links">
+            <!--a href="index.html">Home</a-->
+            <a href="#cuisines">Cuisines</a>
+            <!--a href="#about">About</a-->
+            <a href="#blog">Blog</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Cuisine Categories Page -->
+    <section class="cuisine-categories" id="categoriesPage">
+        <h1 style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem;">Explore World Cuisines</h1>
+        <div class="categories-grid">
+            <div class="category-card" onclick="showCuisinePage('italian')">
+                <img src="italian.jpg" alt="Italian Cuisine" class="category-image">
+                <div class="category-overlay">
+                    <h2 class="category-title">Italian</h2>
+                    <p class="category-desc">Classic Mediterranean flavors and traditional recipes</p>
+                </div>
+            </div>
+            <div class="category-card" onclick="showCuisinePage('asian')">
+                <img src="asian.jpeg" alt="Asian Cuisine" class="category-image">
+                <div class="category-overlay">
+                    <h2 class="category-title">Asian</h2>
+                    <p class="category-desc">Vibrant flavors from the East</p>
+                </div>
+            </div>
+            <div class="category-card" onclick="showCuisinePage('mexican')">
+                <img src="mexi.jpeg" alt="Mexican Cuisine" class="category-image">
+                <div class="category-overlay">
+                    <h2 class="category-title">Mexican</h2>
+                    <p class="category-desc">Bold and spicy Latin American dishes</p>
+                </div>
+            </div>
+            <div class="category-card" onclick="showCuisinePage('mediterranean')">
+                <img src="med.jpg" alt="Mediterranean Cuisine" class="category-image">
+                <div class="category-overlay">
+                    <h2 class="category-title">Mediterranean</h2>
+                    <p class="category-desc">Healthy and fresh coastal favorites</p>
+                </div>
+            </div>
+            <div class="category-card" onclick="showCuisinePage('indian')">
+                <img src="indian.jpg" alt="Indian Cuisine" class="category-image">
+                <div class="category-overlay">
+                    <h2 class="category-title">Indian</h2>
+                    <p class="category-desc">Rich spices and aromatic dishes</p>
+                </div>
+            </div>
+            <div class="category-card" onclick="showCuisinePage('french')">
+                <img src="french.jpeg" alt="French Cuisine" class="category-image">
+                <div class="category-overlay">
+                    <h2 class="category-title">French</h2>
+                    <p class="category-desc">Elegant and sophisticated classics</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cuisine Specific Page -->
+    <section class="cuisine-page" id="cuisinePage">
+        <div class="cuisine-header">
+            <div class="cuisine-header-content">
+                <h1 class="cuisine-title" id="cuisineTitle"></h1>
+                <p class="cuisine-description" id="cuisineDescription"></p>
+            </div>
+        </div>
+
+        <div class="recipe-filters">
+            <button class="filter-button active">All</button>
+            <button class="filter-button">Appetizers</button>
+            <button class="filter-button">Main Course</button>
+            <button class="filter-button">Desserts</button>
+            <button class="filter-button">Vegetarian</button>
+        </div>
+
+        <div class="recipe-grid" id="cuisineRecipes"></div>
+    </section>
+
+    <a href="#" class="back-button" id="backButton" style="display: none;">↩</a>
+
+    <script>
+        // Cuisine data
+        const cuisineData = {
+            italian: {
+                title: "Italian Cuisine",
+                description: "Experience the warmth and passion of Italian cooking with our collection of authentic recipes passed down through generations.",
+                background: "/api/placeholder/1920/600"
+            },
+            asian: {
+                title: "Asian Cuisine",
+                description: "Discover the diverse flavors and cooking techniques from across Asia, from street food to imperial dishes.",
+                background: "/api/placeholder/1920/600"
+            },
+            mexican: {
+                title: "Mexican Cuisine",
+                description: "Explore the vibrant and rich culinary traditions of Mexico, from street tacos to complex moles.",
+                background: "/api/placeholder/1920/600"
+            },
+            mediterranean: {
+                title: "Mediterranean Cuisine",
+                description: "Savor the healthy and flavorful dishes from the Mediterranean region, featuring fresh ingredients and olive oil.",
+                background: "/api/placeholder/1920/600"
+            },
+            indian: {
+                title: "Indian Cuisine",
+                description: "Immerse yourself in the aromatic world of Indian cooking, with its complex spice blends and diverse regional specialties.",
+                background: "/api/placeholder/1920/600"
+            },
+            french: {
+                title: "French Cuisine",
+                description: "Master the art of French cooking with classic techniques and sophisticated recipes from different regions.",
+                background: "/api/placeholder/1920/600"
+            }
+        };
+
+        const categoriesPage = document.getElementById('categoriesPage');
+        const cuisinePage = document.getElementById('cuisinePage');
+        const backButton = document.getElementById('backButton');
+        const cuisineTitle = document.getElementById('cuisineTitle');
+        const cuisineDescription = document.getElementById('cuisineDescription');
+
+        function showCuisinePage(cuisine) {
+            categoriesPage.style.display = 'none';
+            cuisinePage.style.display = 'block';
+            backButton.style.display = 'block';
+
+            const data = cuisineData[cuisine];
+            cuisineTitle.textContent = data.title;
+            cuisineDescription.textContent = data.description;
+            cuisinePage.querySelector('.cuisine-header').style.backgroundImage = `url(${data.background})`;
+
+            // Load cuisine-specific recipes here
+            loadCuisineRecipes(cuisine);
+        }
+
+        backButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            categoriesPage.style.display = 'block';
+            cuisinePage.style.display = 'none';
+            backButton.style.display = 'none';
+        });
+
+        function loadCuisineRecipes(cuisine) {
+            // This function would load recipes specific to the selected cuisine
+            // You can implement this based on your recipe data structure
+            const recipesGrid = document.getElementById('cuisineRecipes');
+            // Add recipe cards here...
+        }
+
+        // Filter button functionality
+        const filterButtons = document.querySelectorAll('.filter-button');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                // Implement filtering logic here
+            });
+        });
+    </script>
+</body>
+</html>
