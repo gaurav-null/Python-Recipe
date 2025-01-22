@@ -12,6 +12,37 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+/* Example Dishes Grid */
+#cuisineExamples {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.example-card {
+    background-color: #1f1f1f; /* Dark background for cards */
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.example-card h3 {
+    color: #eaeaea; /* Light text color for the name */
+    margin-bottom: 1rem;
+}
+
+.example-card p {
+    color: #b0b0b0; /* Lighter text for the recipe */
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    #cuisineExamples {
+        grid-template-columns: 1fr; /* Stack items on small screens */
+    }
+}
 
         /* Dark Mode Body */
         body {
@@ -79,7 +110,7 @@
 
         /* Cuisine Categories Page */
         .cuisine-categories {
-            margin-top: 80px;
+            margin-top: 0px;
             padding: 2rem;
             max-width: 1400px;
             margin-left: auto;
@@ -243,8 +274,7 @@
     <nav class="navbar">
         <a href="index.html" class="logo">Recipie</a>
         <div class="nav-links">
-            <a href="#cuisines">Cuisines</a>
-            <a href="#blog">Blog</a>
+            <a href="blog.html">User content</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
@@ -306,7 +336,7 @@
                 <p class="cuisine-description" id="cuisineDescription"></p>
             </div>
         </div>
-
+    
         <div class="recipe-filters">
             <button class="filter-button active">All</button>
             <button class="filter-button">Appetizers</button>
@@ -314,62 +344,116 @@
             <button class="filter-button">Desserts</button>
             <button class="filter-button">Vegetarian</button>
         </div>
-
+    
+        <h2>Popular Dishes</h2>
+        <ul id="cuisineExamples">
+            <!-- Dynamic list of examples will be inserted here -->
+        </ul>
+    
         <div class="recipe-grid" id="cuisineRecipes"></div>
     </section>
+    
 
     <a href="#" class="back-button" id="backButton" style="display: none;">↩</a>
 
     <script>
         // Cuisine data
         const cuisineData = {
-            italian: {
-                title: "Italian Cuisine",
-                description: "Experience the warmth and passion of Italian cooking with our collection of authentic recipes passed down through generations.",
-                background: "/api/placeholder/1920/600"
-            },
-            asian: {
-                title: "Asian Cuisine",
-                description: "Discover the diverse flavors and cooking techniques from across Asia, from street food to imperial dishes.",
-                background: "/api/placeholder/1920/600"
-            },
-            mexican: {
-                title: "Mexican Cuisine",
-                description: "Explore the vibrant and rich culinary traditions of Mexico, from tacos to tamales.",
-                background: "/api/placeholder/1920/600"
-            },
-            french: {
-                title: "French Cuisine",
-                description: "Savor the classic elegance and refinement of French gastronomy.",
-                background: "/api/placeholder/1920/600"
-            },
-            mediterranean: {
-                title: "Mediterranean Cuisine",
-                description: "Dive into the healthy, fresh, and flavorful dishes from the Mediterranean region.",
-                background: "/api/placeholder/1920/600"
-            }
-        };
+    italian: {
+        title: "Italian Cuisine",
+        description: "Experience the warmth and passion of Italian cooking with our collection of authentic recipes passed down through generations.",
+        background: "/api/placeholder/1920/600",
+        examples: [
+            { name: "Spaghetti Carbonara", recipe: "Classic pasta with eggs, cheese, pancetta, and pepper." },
+            { name: "Margherita Pizza", recipe: "Simple pizza with tomato, mozzarella, and fresh basil." },
+            { name: "Lasagna", recipe: "Layers of pasta, meat sauce, and creamy béchamel." },
+            { name: "Risotto alla Milanese", recipe: "Saffron-flavored creamy rice dish." },
+            { name: "Tiramisu", recipe: "Layered dessert with coffee-soaked ladyfingers and mascarpone." }
+        ]
+    },
+    asian: {
+        title: "Asian Cuisine",
+        description: "Discover the diverse flavors and cooking techniques from across Asia, from street food to imperial dishes.",
+        background: "/api/placeholder/1920/600",
+        examples: [
+            { name: "Sushi", recipe: "Vinegared rice served with various seafood, vegetables, or egg." },
+            { name: "Pad Thai", recipe: "Stir-fried rice noodles with shrimp, tofu, peanuts, and lime." },
+            { name: "Dim Sum", recipe: "A variety of small steamed or fried dishes, often served with tea." },
+            { name: "Pho", recipe: "Vietnamese noodle soup with herbs, bean sprouts, and meat." },
+            { name: "Kimchi", recipe: "Spicy and sour fermented vegetables, often cabbage or radish." }
+        ]
+    },
+    mexican: {
+        title: "Mexican Cuisine",
+        description: "Explore the vibrant and rich culinary traditions of Mexico, from tacos to tamales.",
+        background: "/api/placeholder/1920/600",
+        examples: [
+            { name: "Tacos", recipe: "Corn or flour tortillas filled with a variety of meats and toppings." },
+            { name: "Enchiladas", recipe: "Tortillas rolled and stuffed with chicken, cheese, or beef, then covered in sauce." },
+            { name: "Tamales", recipe: "Masa dough wrapped in corn husks, filled with meats or vegetables." },
+            { name: "Guacamole", recipe: "Mashed avocado with lime, cilantro, and tomatoes." },
+            { name: "Churros", recipe: "Fried dough pastry covered in sugar and cinnamon." }
+        ]
+    },
+    french: {
+        title: "French Cuisine",
+        description: "Savor the classic elegance and refinement of French gastronomy.",
+        background: "/api/placeholder/1920/600",
+        examples: [
+            { name: "Coq au Vin", recipe: "Chicken slow-cooked in red wine with mushrooms and onions." },
+            { name: "Croissant", recipe: "Buttery, flaky pastry often served at breakfast." },
+            { name: "Ratatouille", recipe: "Stewed vegetables with tomatoes, zucchini, eggplant, and herbs." },
+            { name: "Quiche Lorraine", recipe: "Savory pie with eggs, cream, cheese, and bacon." },
+            { name: "Crème Brûlée", recipe: "Rich custard topped with a crisp caramelized sugar crust." }
+        ]
+    },
+    mediterranean: {
+        title: "Mediterranean Cuisine",
+        description: "Dive into the healthy, fresh, and flavorful dishes from the Mediterranean region.",
+        background: "/api/placeholder/1920/600",
+        examples: [
+            { name: "Greek Salad", recipe: "Fresh cucumbers, tomatoes, olives, and feta cheese, dressed with olive oil." },
+            { name: "Falafel", recipe: "Deep-fried balls of chickpea or fava bean mixture, often served in pita." },
+            { name: "Hummus", recipe: "Blended chickpeas, tahini, garlic, and olive oil." },
+            { name: "Moussaka", recipe: "Layered casserole with eggplant, ground meat, and béchamel." },
+            { name: "Baklava", recipe: "Sweet pastry filled with nuts and honey syrup." }
+        ]
+    }
+};
 
         // Show the cuisine page with dynamic content
         function showCuisinePage(cuisine) {
-            const cuisineInfo = cuisineData[cuisine];
-            if (!cuisineInfo) return;
-            
-            document.querySelector("#cuisineTitle").textContent = cuisineInfo.title;
-            document.querySelector("#cuisineDescription").textContent = cuisineInfo.description;
-            document.querySelector(".cuisine-header").style.backgroundImage = `url(${cuisineInfo.background})`;
-            
-            document.getElementById("categoriesPage").style.display = "none";
-            document.getElementById("cuisinePage").style.display = "block";
-            document.getElementById("backButton").style.display = "block";
-        }
+    const cuisineInfo = cuisineData[cuisine];
+    if (!cuisineInfo) return;
 
-        // Handle back button to return to categories
-        document.getElementById("backButton").addEventListener("click", () => {
-            document.getElementById("categoriesPage").style.display = "block";
-            document.getElementById("cuisinePage").style.display = "none";
-            document.getElementById("backButton").style.display = "none";
-        });
+    // Update the header content
+    document.querySelector("#cuisineTitle").textContent = cuisineInfo.title;
+    document.querySelector("#cuisineDescription").textContent = cuisineInfo.description;
+    document.querySelector(".cuisine-header").style.backgroundImage = `url(${cuisineInfo.background})`;
+
+    // Display the examples in a grid
+    const examplesList = document.querySelector("#cuisineExamples");
+    examplesList.innerHTML = ""; // Clear previous examples
+    cuisineInfo.examples.forEach(dish => {
+        const dishCard = document.createElement("div");
+        dishCard.classList.add("example-card");
+
+        const dishName = document.createElement("h3");
+        dishName.textContent = dish.name;
+        dishCard.appendChild(dishName);
+
+        const dishRecipe = document.createElement("p");
+        dishRecipe.textContent = dish.recipe;
+        dishCard.appendChild(dishRecipe);
+
+        examplesList.appendChild(dishCard);
+    });
+
+    // Show the cuisine page and hide the categories page
+    document.getElementById("categoriesPage").style.display = "none";
+    document.getElementById("cuisinePage").style.display = "block";
+    document.getElementById("backButton").style.display = "block";
+}   
     </script>
 </body>
 </html>
