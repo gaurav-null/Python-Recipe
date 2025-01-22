@@ -21,10 +21,11 @@ A brief and engaging description of your project. Summarize what it does and why
 
 **Respie** is a robust and intuitive web application. It combines modern design with powerful backend features to deliver an exceptional user experience.
 Made By
--Gaurav Nile
--Hruday Patil
--Anathesia
--Satina
+
+ - Gaurav Nile
+ - Hruday Patil
+ - Anathesia
+ - Satina
 ---
 
 ## Features
