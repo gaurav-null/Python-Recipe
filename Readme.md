@@ -30,9 +30,8 @@ Made By
 
 ## Features
 
-- [Feature 1: Describe a major feature.]
-- [Feature 2: Describe another feature.]
-- [Feature 3: Highlight additional functionalities.]
+- A interactive ChatBot powered by
+- A Mini blog post for the content creators
 - Fully responsive and user-friendly interface.
 
 ---
@@ -49,11 +48,8 @@ Made By
 
 **Other Tools**:
 - Python (core language)
-- Bootstrap (for responsive design)
 
 ---
-
-## Installation
 
 ### Prerequisites
 
