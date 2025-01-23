@@ -43,7 +43,7 @@ Made By
 - CSS3
 
 **Backend**:
-- Django Framework
+- Flask Framework
 - MySQL Database
 
 **Other Tools**:
